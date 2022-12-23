@@ -1,1 +1,1 @@
-console.log('background script running')
+console.log('background script running!')
