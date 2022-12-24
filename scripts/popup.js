@@ -1,23 +1,30 @@
 
 let action = false;
 
-const authenticateButton = document.getElementById('authenticate');
+$('#authenticate').on('click', () => {
+  if (action) {
+    oAuth2.begin();
+  }
+});
 
-authenticateButton.addEventListener('click', () => {
-    console.log(action ? 'action' : 'no action');
-})
+/* Get URL for welcome page */
+$('#welcome_URL').attr(
+  'href',
+  chrome.runtime.getURL('welcome.html')
+);
+$('#hook_URL').attr(
+  'href',
+  chrome.runtime.getURL('welcome.html')
+);
 
-const authModeDiv = document.getElementById('auth_mode');
-let loginModeDiv = document.getElementById('login_mode');
 
 chrome.storage.local.get('my_leethub_token', (data) => {
   const token = data.leethub_token;
   if (token === null || token === undefined) {
     action = true;
-    authModeDiv.style.display = 'block';
+    $('#auth_mode').show();
   } else {
-    loginModeDiv.style.display = 'block';
-    loginModeDiv.innerHTML = `<p>Token: ${token}</p>`
+    $('login_mode').show();
   }
 });
 
