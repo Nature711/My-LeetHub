@@ -20,13 +20,12 @@ const createRepo = (token, repoName) => {
     };
 
     fetch(GITHUB_REPO_API, options)
-    .then(res => res.text())
-    .then(responseText => showMessageCreateRepo(res.status, responseText));
+    .then(res => showMessageCreateRepo(res.status, res.text()));
 }
 
-const showMessageCreateRepo = (status, res) => {
-
-    const { name, html_url, full_name } = res;
+const showMessageCreateRepo = async (status, responseText) => {
+    responseText = await responseText;
+    const { name, html_url, full_name } = JSON.parse(responseText);
 
     switch (status) {
         case 304: 
@@ -56,7 +55,7 @@ const showMessageCreateRepo = (status, res) => {
             break;
         case 422: 
             $('#success').hide();
-            $('#error').text('Error creating repo: Validation failed / endpoint being spammed');
+            $('#error').text('Error creating repo: Repo with the same name already exists');
             $('#error').show();
             break;
             
@@ -122,8 +121,8 @@ $('#hook_button').on('click', () => {
     perform processing
     */
 
-    chrome.storage.local.get('leethub_token', (data) => {
-      const token = data.leethub_token;
+    chrome.storage.local.get('my_leethub_token', (data) => {
+      const token = data.my_leethub_token;
       if (token === null || token === undefined) {
         /* Not authorized yet. */
         $('#error').text('Authorization error: LeetHub token not found');

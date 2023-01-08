@@ -11,16 +11,6 @@ const localAuth = {
         this.SCOPES = ['repo'];
     },
 
-    parseAccessCode(url) {
-        if (url.match(/\?error=(.+)/)) { //close current tab if there's any error
-            chrome.tabs.getCurrent(function (tab) {
-                chrome.tabs.remove(tab.id, function () {});
-            }); 
-        } else { //extract the session code, use this code to exchange for a oauth2 access token
-            this.requestToken(url.match(/\?code=([\w\/\-]+)/)[1]);
-        }
-    },
-
     requestToken(code) {
         const options = {
             method: 'POST',
@@ -35,9 +25,9 @@ const localAuth = {
         fetch(this.ACCESS_TOKEN_URL, options) //post request to this url, passing in code in request body
         .then(res => res.text()) //response contains the issued access token 
         .then(responseText => {
-            console.log(responseText)
+            //console.log("obtained access token " + responseText);
             this.finish(responseText.match(/access_token=([^&]*)/)[1]); //extract the access token from response
-        })
+        });
             
     },
 
@@ -62,20 +52,21 @@ const localAuth = {
                 token,
                 username,
                 KEY: this.KEY
-            })
+            }) //message trigger background scripts to run --> handle message
         })
+
     },
 }
 
 localAuth.init();
-const link = window.location.href; 
+const url = window.location.href; 
 //after redirecting, the url will be https://github.com/?code=<the-returned-session-code>
 
 /* Check for open pipe established from oauth2 */
 if (window.location.host === 'github.com') {
   chrome.storage.local.get('my_pipe_leethub', (data) => {
     if (data && data.my_pipe_leethub) {
-      localAuth.parseAccessCode(link);
+        localAuth.requestToken(url.match(/\?code=([\w\/\-]+)/)[1]);
     }
   });
 }

@@ -8,10 +8,10 @@ $('#authenticate').on('click', () => {
 });
 
 /* Get URL for welcome page */
-// $('#welcome_URL').attr(
-//   'href',
-//   chrome.runtime.getURL('welcome.html')
-// );
+$('#welcome_URL').attr(
+  'href',
+  chrome.runtime.getURL('welcome.html')
+);
 $('#hook_URL').attr(
   'href',
   chrome.runtime.getURL('welcome.html')
@@ -19,12 +19,12 @@ $('#hook_URL').attr(
 
 
 chrome.storage.local.get('my_leethub_token', (data) => {
-  const token = data.leethub_token;
+  const token = data.my_leethub_token;
   if (token === null || token === undefined) {
     action = true;
     $('#auth_mode').show();
   } else {
-    $('login_mode').show();
+    $('#hook_mode').show();
   }
 });
 

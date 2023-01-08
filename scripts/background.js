@@ -5,7 +5,7 @@ function handleMessage(request) {
     chrome.storage.local.set({ leethub_username: request.username }); //same as extracted github username
 
     /* Set token */
-    chrome.storage.local.set({ leethub_token: request.token });
+    chrome.storage.local.set({ my_leethub_token: request.token });
 
     /* Close pipe */
     chrome.storage.local.set(

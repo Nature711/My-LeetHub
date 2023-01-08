@@ -23,6 +23,7 @@
         </h1>
         <p id="caption">Sync your code from LeetCode to GitHub</p>
         <br />
+        
         <!-- Authentication mode -->
         <div id="auth_mode" hidden>
           <p class="onboarding">
@@ -37,7 +38,26 @@
             Authenticate
           </button>
         </div>
-        <div id="login_mode" hidden></div>
+        
+        <!-- Repo Hook mode -->
+        <div id="hook_mode" hidden>
+          <p class="onboarding">
+            <br />
+            Set up repository hook to use
+            <strong
+              >Leet<span style="color: #f18500">Hub</span></strong
+            >
+          </p>
+          <a
+            id="hook_URL"
+            href=""
+            target="blank"
+            class="ui secondary button"
+          >
+            <i class="icon github"></i>
+            Set up Hook
+          </a>
+        </div>
     </div>
   </body>
   <script src="scripts/oauth2.js"></script>
