@@ -228,6 +228,25 @@ $('#hook_button').on('click', () => {
   }
 });
 
+const unlinkRepo = () => {
+    chrome.storage.local.set({ my_leethub_hook: null }, () => {
+      console.log('Defaulted repo hook to NONE');
+    });
+    chrome.storage.local.set({ mode_type: 'hook' }, () => {
+      console.log(`Setting mode type back to hook`);
+    });
+    document.getElementById('hook_mode').style.display = 'inherit';
+    document.getElementById('commit_mode').style.display = 'none';
+}
+
+$('#unlink a').on('click', () => {
+  unlinkRepo();
+  $('#unlink').hide();
+  $('#success').text(
+    'Successfully unlinked your current git repo. Please create/link a new hook.',
+  );
+});
+
 
 /* Detect mode type and determine which content to display */
 chrome.storage.local.get('mode_type', (data) => {
