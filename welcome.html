@@ -35,7 +35,7 @@
 
       <!-- Create Hook -->
       <div
-   
+        style="display: none"
         id="hook_mode"
         class="ui grid container"
       >
@@ -49,7 +49,7 @@
             <div class="field">
               <label for="type">Pick an Option</label>
               <select id="type">
-                <option value="" selected disabled hidden>Choose here</option>
+                <option value="" selected disabled hidden>Pick an Option</option>
                 <option value="new">
                   Create a new Private Repository
                 </option>
@@ -83,8 +83,28 @@
             Get Started
           </button>
         </div>
-
       </div>
+
+       <!-- Show stats -->
+      <div
+        style="display: none"
+        id="commit_mode"
+        class="ui grid container"
+      >
+
+        <div class="eight wide center aligned column">
+          <br /><br /><br />
+          <div class="ui inverted large header">
+            Want more features? <br /><a
+              style="color: aqua !important; font-size: 0.8em"
+              target="_blank"
+              href="https://github.com/QasimWani/LeetHub/labels/feature"
+              >Request a feature!</a
+            >
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
   <script src="scripts/welcome.js"></script>
