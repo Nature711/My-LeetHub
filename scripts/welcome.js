@@ -62,7 +62,7 @@ const showMessageCreateRepo = async (status, responseText) => {
             chrome.storage.local.set({mode_type: 'commit'}, () => {
                 $('#error').hide();
                 $('#success').html(
-                `Successfully created <a target="blank" href="${html_url}">${name}</a>. 
+                `Successfully created <a target="_blank" href="${html_url}">${name}</a>. 
                 Start <a href="http://leetcode.com">LeetCoding</a>!`,
                 );
                 $('#success').show();
@@ -71,7 +71,6 @@ const showMessageCreateRepo = async (status, responseText) => {
                 document.getElementById('hook_mode').style.display = 'none';
                 document.getElementById('commit_mode').style.display = 'inherit';
             });
-
             //set repo hook
             chrome.storage.local.set({my_leethub_hook: full_name}, 
                 () => console.log('Successfully set new repo hook'));
@@ -116,7 +115,6 @@ const linkRepo = (token, hook) => {
         document.getElementById('commit_mode').style.display = 'none';
       }
     });
-    
 }
 
 const showMessageLinkRepo = async (status, responseText) => {
@@ -169,7 +167,6 @@ const showMessageLinkRepo = async (status, responseText) => {
   }
   return hasError;
 }
-
 
 /* disable get started button until a dropdown value has been selected */
 $('#type').on('change', function () {
@@ -229,9 +226,11 @@ $('#hook_button').on('click', () => {
 });
 
 const unlinkRepo = () => {
+    /* Set Repo Hook to NONE */
     chrome.storage.local.set({ my_leethub_hook: null }, () => {
       console.log('Defaulted repo hook to NONE');
     });
+    /* Set mode type to hook */
     chrome.storage.local.set({ mode_type: 'hook' }, () => {
       console.log(`Setting mode type back to hook`);
     });
@@ -246,7 +245,6 @@ $('#unlink a').on('click', () => {
     'Successfully unlinked your current git repo. Please create/link a new hook.',
   );
 });
-
 
 /* Detect mode type and determine which content to display */
 chrome.storage.local.get('mode_type', (data) => {
@@ -283,7 +281,6 @@ chrome.storage.local.get('mode_type', (data) => {
     document.getElementById('commit_mode').style.display = 'none';
   }
 });
-
 
 const onError = (message) => {
     $('#error').text(message);

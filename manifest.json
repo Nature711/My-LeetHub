@@ -24,7 +24,12 @@
       {
         "js": [
           "scripts/jquery-3.3.1.min.js",
-          "scripts/semantic.min.js"
+          "scripts/semantic.min.js",
+          "scripts/authorize.js"
+        ],
+        "matches": [
+        "https://leetcode.com/*",
+        "https://github.com/*"
         ],
         "run_at": "document_idle"
       }

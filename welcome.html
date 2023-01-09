@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="css/popup.css" />
+    <link rel="stylesheet" href="css/welcome.css" />
     <script
       src="scripts/jquery-3.3.1.min.js"
       integrity=""
@@ -47,9 +47,8 @@
         <div class="four wide left aligned column">
           <div class="ui form">
             <div class="field">
-              <label for="type">Pick an Option</label>
               <select id="type">
-                <option value="" selected disabled hidden>Pick an Option</option>
+                <option value="" hidden>Pick an Option</option>
                 <option value="new">
                   Create a new Private Repository
                 </option>
@@ -92,6 +91,29 @@
         class="ui grid container"
       >
 
+        <div class="eight wide center aligned column">
+          <br /><br /><br />
+          <div
+            style="font-size: 2.3em"
+            class="ui inverted large header"
+          >
+            Problems Solved: <span id="p_solved">0</span>
+          </div>
+          <div
+            styl="font-size: 2.3em"
+            class="ui inverted large header"
+          >
+            <span style="color: #5cb85c">Easy:</span>
+            <span id="p_solved_easy" style="color: #5cb85c">0 </span>
+            <span style="color: #f0ad4e">&ensp; &ensp; Medium:</span>
+            <span id="p_solved_medium" style="color: #f0ad4e"
+              >0
+            </span>
+            <span style="color: #d9534f">&ensp; &ensp; Hard:</span>
+            <span id="p_solved_hard" style="color: #d9534f">0 </span>
+          </div>
+        </div>
+        
         <div class="eight wide center aligned column">
           <br /><br /><br />
           <div class="ui inverted large header">
