@@ -20,7 +20,6 @@ $('#hook_URL').attr(
 
 chrome.storage.local.get('my_leethub_token', data => {
   const token = data.my_leethub_token;
-  console.log(token)
   if (token === null || token === undefined) {
     /* no leethub token means user hasn't granted leethub access to user's github account
       display auth mode
@@ -45,7 +44,6 @@ chrome.storage.local.get('my_leethub_token', data => {
 
     fetch(GITHUB_AUTH_URL, options)
     .then(res => {
-      console.log(res.status);
       if (res.status == 200) {
         /*user authenticated
         show main features
