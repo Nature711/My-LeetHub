@@ -25,7 +25,8 @@
         "js": [
           "scripts/jquery-3.3.1.min.js",
           "scripts/semantic.min.js",
-          "scripts/authorize.js"
+          "scripts/authorize.js",
+          "scripts/leetcode.js"
         ],
         "matches": [
         "https://leetcode.com/*",
