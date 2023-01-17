@@ -270,6 +270,17 @@ chrome.storage.local.get('mode_type', (data) => {
             linkRepo(token, hook);
             document.getElementById('hook_mode').style.display = 'none';
             document.getElementById('commit_mode').style.display = 'inherit';
+
+            chrome.storage.local.get('stats', data4 => {
+              const stats = data4.stats;
+              if (stats) {
+                const {easy, medium, hard, solved} = stats;
+                $('#p_solved').text(solved);
+                $('#p_solved_easy').text(easy);
+                $('#p_solved_medium').text(medium);
+                $('#p_solved_hard').text(hard);
+              }
+            });
           }
         });
       }

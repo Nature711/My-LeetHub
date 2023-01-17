@@ -53,6 +53,26 @@ chrome.storage.local.get('my_leethub_token', data => {
           if (mode && mode === 'commit') {
             //commit mode
             $('#commit_mode').show();
+
+            chrome.storage.local.get('stats', data3 => {
+              const stats = data3.stats;
+              if (stats) {
+                const {easy, medium, hard, solved} = stats;
+                $('#p_solved').text(solved);
+                $('#p_solved_easy').text(easy);
+                $('#p_solved_medium').text(medium);
+                $('#p_solved_hard').text(hard);
+              }
+            });
+
+            chrome.storage.local.get('my_leethub_hook', data4 => {
+              const leethubHook = data4.my_leethub_hook;
+                if (leethubHook) {
+                  $('#repo_url').html(
+                    `<a target="blank" style="color: cadetblue !important; font-size:0.8em;" href="https://github.com/${leethubHook}">${leethubHook}</a>`,
+                  );
+              }
+            });
           } else {
             //hook mode
             $('#hook_mode').show();
