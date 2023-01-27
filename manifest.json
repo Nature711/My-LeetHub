@@ -12,5 +12,30 @@
     },
     "action": {
         "default_popup": "popup.html"
+    },
+    "background": {"service_worker": "scripts/background.js"},
+    "permissions": ["storage", "activeTab", "tabs", "unlimitedStorage"],
+    "host_permissions": [
+      "https://github.com/*",
+      "https://api.github.com/*",
+      "https://leetcode.com/*"
+    ],
+    "content_scripts": [
+      {
+        "js": [
+          "scripts/jquery-3.3.1.min.js",
+          "scripts/semantic.min.js",
+          "scripts/authorize.js",
+          "scripts/leetcode.js"
+        ],
+        "matches": [
+        "https://leetcode.com/*",
+        "https://github.com/*"
+        ],
+        "run_at": "document_idle"
+      }
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
     }
 }
